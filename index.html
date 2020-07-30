@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Notes </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+    <style>
+        .card {
+            background: #F0FF00;
+            transform: rotate(-8deg);
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+        
+        .card:hover {
+            transform: rotate(8deg);
+            background: #00FFFD;
+            transform: scale(1.3);
+            font-size: 80%;
+        }
+        
+        body {
+            background: url('https://www.stockvault.net/data/2018/10/16/255230/preview16.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <h1 class="navbar-brand">NOTES</h1>
+    </nav>
+    <div class="container">
+        <form class="form-inline mt-3">
+            <div id="search">
+                <strong>Search: </strong>
+                <input class="form-control mr-sm-2" id="searchInput" placeholder="Enter title" autocomplete="off">
+                <input type="text" id="datepicker-1" class="form-control ml-2" value="Enter Date" autocomplete="off">
+                <a href="#/new" type="button" class="form-control" style="text-decoration: none;"> New Note  <i class="fas fa-plus-circle"></i></a>
+            </div>
+        </form>
+
+        <div id="templateLoad" class="mt-5"></div>
+
+        <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
+
+        <script src="script.js"></script>
+
+
+        <!-- New note form -->
+        <script id="newNoteTemplate" type="text/template">
+            <div class="col-12 mt-1">
+                <form class="col-12">
+                    <button class="float-right btn btn-outline-primary" style="border:none" type="button" id="homeButton"><i class="fas fa-backward"></i> Home</button>
+                    <h4>New Note:</h4>
+                    <hr>
+                    <div class="form-row form-group">
+                        <label class="col-1 col-form-label mr-5" for="title">Title: </label>
+                        <input type="text" class="form-control col-6" id="new-title" autocomplete="off" required/>
+                    </div>
+                    <br>
+                    <div class="form-row form-group">
+                        <label class="col-1 col-form-label mr-5" for="details">Description: </label>
+                        <textarea style="width: 50%; height: 150px;" class="form-control" id="new-description" autocomplete="off" required></textarea>
+                    </div>
+                    <div class="form-row form-group col-2 ">
+                        <button class="btn btn-outline-primary form-control" type="submit" id="submitNote">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </script>
+
+
+        <!-- To display the notes in the collection -->
+        <script id="noteItemTemplate" type="text/template">
+            <div id="notes">
+                <div class="col-3">
+                    <div class="card mb-5 mr-5" style="width: 18rem;box-shadow:0 0 5px;">
+                        <div class="card-body" style="">
+                            <h5 class="card-title">
+                                <div id="title" title="Double tap to update">
+                                    <%= title %>
+                                </div>
+                            </h5>
+                            <p class="card-subtitle mb-2 text-muted">
+                                <%= postedDate %>
+                            </p>
+                            <p class="card-text">
+                                <div id="description">
+                                    <%= description %>
+                                </div>
+                            </p>
+                            <span><button type="button" class="btn btn-outline-primary btn-sm edit-note" style="border-radius:15px" >Edit <span><i class="fas fa-pencil-alt"></i></span></button>
+                            <span><button type="button" class="btn btn-success btn-sm update-note" style="border-radius:15px;display:none">Update <span><i class="fas fa-pencil-alt"></i></span></button>
+                            </span>
+                            <span><button type="button" class="btn btn-danger btn-sm delete-note" style="border-radius:15px" >Delete <span><i class="fas fa-trash"></i></span></span>
+                            <span><button type="button" class="btn btn-danger btn-sm cancel-note" style="border-radius:15px;display:none">Cancel <span><i class="fas fa-trash"></i></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+    </div>
+
+</body>
+
+</html>
